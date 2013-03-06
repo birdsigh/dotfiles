@@ -1,7 +1,4 @@
-## Git global ignore: Marc Hibbins (@marchibbins)
-
-# Vim
-.*.sw[a-z]
+## Git global ignore: Tim Crook (@birdsigh)
 
 # Python
 *.pyc

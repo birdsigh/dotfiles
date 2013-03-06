@@ -1,8 +1,8 @@
-## Git config: Marc Hibbins (@marchibbins)
+## Git config: Tim Crook (@birdsigh)
 
 [user]
-    name = Marc Hibbins
-    email = marchibbins@gmail.com
+    name = Tim Crook
+    email = tim@sprettynice.com
 [core]
     editor = /usr/bin/vim
     excludesfile = ~/.gitignore
