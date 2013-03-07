@@ -3,13 +3,17 @@
 [user]
     name = Tim Crook
     email = tim@sprettynice.com
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
 [core]
-    editor = /usr/bin/vim
+    editor = ~/bin/subl
     excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
 [color]
     ui = auto
 [color "branch"]
-    current = yellow bold
+    current = yellow reverse
     local = yellow
     remote = green
 [color "diff"]
@@ -25,11 +29,49 @@
     co = checkout
     cm = commit -m
     cam = commit -am
-    s = status
-    ss = status -s
+    # Commit all changes
+    ca = !git add -A && git commit -av
+    # View the current working tree status using the short format
+    s = status -s
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
     df = diff
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
     br = branch
-    lg = log
-    lgs = log --oneline
-    hardreset = reset --hard HEAD
+    # View the SHA, description, and history graph of the latest 20 commits
+    lg = log --pretty=oneline -n 20 --graph
+    lgl = log
+    # Pull in remote changes for the current repository and all its submodules
+    p = !"git pull; git submodule foreach git pull origin master"
+    # Clone a repository including all submodules
+    c = clone --recursive
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
     undo = reset --soft HEAD^
+    # Undo a `git push`
+    undopush = push -f origin HEAD^:master
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+
+# Use `origin` as the default remote on the `master` branch in all cases
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+
+# URL shorthands
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+    insteadOf = "github:"
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"

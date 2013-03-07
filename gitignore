@@ -5,6 +5,10 @@
 *.pyo
 *.pot
 
+# Flash
+*.air
+*.swf
+
 # Temp
 *.log
 *.lnk
@@ -14,12 +18,19 @@
 *.db
 *.sqlite
 
-# Node
-node_modules
-
-# OS X
+# Folder view configuration files
 .DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
 .Spotlight-V100
 .Trashes
-Thumbs.db
-*~
+
+#Working Files
+*.sublime-workspace
+*.swp
+*.swo
